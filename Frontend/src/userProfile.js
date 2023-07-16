@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import "./userProfile.css";
-import user from "./Images/user.png";
+import { useNavigate } from "react-router-dom";
+
 import cart_icon from "./Images/Menu/icons8-cart-48.png";
 import Footer from "./Footer";
 import Spinner from "./Spinner";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+//Images
+import edit from "./Images/edit.png";
+import User from "./Images/user.png";
+
 //Toastify
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Profile({ updateUser }) {
+const navigate = useNavigate();
+
   const [order, setOrder] = useState({});
+ const[nameuser,setNameUser]=useState("");
+ const[emailuser,setEmailUser]=useState("");
+ const[contactuser,setContactUser]=useState("");
   
   const Logout = () => {
     localStorage.removeItem("Data");
@@ -24,20 +34,25 @@ function Profile({ updateUser }) {
   const email = JSON.parse(localStorage.getItem("Data")).email;
 
   useEffect(() => {
+    
     fetch(`http://localhost:5000/api/profile?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setLoading(false);
         setOrder(data);
+       setNameUser(data.name);
+       setEmailUser(data.email);
+       setContactUser(data.contact);
       });
   }, []);
-  console.log(order);
+  // console.log(order);
 
   const [data, setData] = useState({});
   const [picture, setPicture] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [editMode,seteditMode]=useState(false);
 
   const postDetails = async (picture) => {
     // console.log(picture);
@@ -92,6 +107,41 @@ function Profile({ updateUser }) {
   const showPopup=()=>{
     toast.warn("Tap on Image to change !")
   }
+
+  const handleEdit =  () => {
+   seteditMode(!editMode);
+   }
+
+   const handleNameChange =  (e) => {
+   setNameUser(e.target.value);
+
+   }
+  //  const handleEmailChange =  (e) => {
+  // setContactUser(e.target.value);
+
+  //  }
+   const handleContactChange =  (e) => {
+  setContactUser(e.target.value);
+
+   }
+   const handleProfileSave=async()=>{
+    const res= await fetch(`http://localhost:5000/api/profile/?email=${email}`,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+      },
+      body:JSON.stringify({name:nameuser,contact:contactuser,}),
+    })
+    const data=await res.json();
+    if(data=="updated")
+    {
+      seteditMode(false);
+      toast.success("Updated")
+    window.location.reload();
+    }
+
+   }
+
   return (
     <>
       {/*Navbar Here */}
@@ -124,9 +174,11 @@ function Profile({ updateUser }) {
               <img className="menu-nav-cart-icon" src={cart_icon} />
             </a>
           </li>
+       
           <li>
-              <a href="/profile"><img src={user}/></a>
+              <a href="/profile"><img className='menu-nav-cart-icon' src={User}/></a>
             </li>
+   
           <li>
 
             <button className="Menu-Logout-button" onClick={Logout}>
@@ -139,7 +191,7 @@ function Profile({ updateUser }) {
       <p className="userProfile-header" style={{ backgroundColor: "#f5f5f5" }}>
         Hey! See your all orders here..
       </p>
-      <div
+      <div className="profile-outer-box"
         style={{
           display: "flex",
           justifyContent: "center",
@@ -171,36 +223,42 @@ function Profile({ updateUser }) {
        {picture && <button style={{"padding":"4%","marginTop":"5%","width":"50%","borderRadius":"10px","backgroundColor":"blueviolet","color":"white","border":"none","boxShadow":"2px 2px 2px black"}} onClick={handleImage}>Save</button>}   
         </div>
         <div className="userProfile-profile">
+        <img className="user-edit" onClick={handleEdit} src={edit}/>
           <div className="userProfile-profile-content">
             <p className="userProfile-label">Name</p>
-            <input
+            {editMode?<input
               className="userProfile-input"
               type="text"
-              value={order.name}
-            />
+              onChange={handleNameChange}
+              name="nameuser"
+              value={nameuser}
+             
+            />:<p  className="userProfile-input" >{order.name}</p>}
+            
           </div>
           <div className="userProfile-profile-content">
             <p className="userProfile-label">Email</p>
-            <input
-              className="userProfile-input"
-              type="text"
-              value={order.email}
-            />
+          <p  className="userProfile-input">{order.email}</p>
+            
           </div>
           <div className="userProfile-profile-content">
             <p className="userProfile-label">Contact</p>
-            <input
+            {editMode? <input
               className="userProfile-input"
               type="text"
-              value={order.contact}
-            />
+              value={contactuser}
+              onChange={handleContactChange}
+name="contactuser"
+            />:<p className="userProfile-input">{order.contact}</p>}
+           
           </div>
+         {editMode&&<button onClick={handleProfileSave} className="profile-edit-button">Save</button>} 
           
         </div>
       </div>
    
       <div>
-    <div style={{"backgroundColor":"#f5f5f5","padding":"2% 0"}}>
+    <div className="profile-order-box" style={{"backgroundColor":"#f5f5f5","padding":"2% 0"}}>
       
     <div style={{"height":"90vh","overflowY":"scroll","backgroundColor":"#f5f5f5"}}>
               <table  >

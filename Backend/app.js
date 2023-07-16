@@ -288,6 +288,15 @@ const {contact}=await Address.findOne({email:email});
  return res.json({orderArray:orderArray,name:name,email:email,contact:contact,picture:picture});
 
 })
+app.post("/api/profile",async(req,res)=>{
+  const {email}=req.query;
+
+  const user=await User.findOne({email:email});
+  user.name=req.body.name;
+  user.contact=req.body.contact;
+  await user.save();
+  return res.json("updated");
+})
 app.put("/api/image", async (req, res) => {
   const { email, picture } = req.body;
   console.log(picture);

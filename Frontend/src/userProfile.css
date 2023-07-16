@@ -73,6 +73,11 @@ font-size: 25px;
     margin-left: 9%;
     box-shadow: 7px 7px 7px rgb(194, 184, 184);
 } */
+.profile-outer-box{
+    display: flex;
+    justify-content: center;
+    background-color: #f5f5f5;   
+}
 table {
     margin :0 auto;
     width: 95%;
@@ -109,11 +114,36 @@ table {
     padding: 10px;
     margin-top: -40px;
   }
+  thead th{
+    position: sticky;
+    top: 0;
+  }
+  .user-edit{
+    height: 5vh;
+    float: right;
+  }
+  .user-edit:active{
+    transform: scale(1.1);
+  }
+.profile-edit-button{
+    padding: 1%;
+    width: 15%;
+    font-size: 1.25rem;
+    border: none;
+    background-color: #525fe1;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgb(24, 2, 49);
 
+
+}
+.profile-edit-button:active{
+    box-shadow: none;
+}
   @media only screen and (max-width: 768px) {
-    tr{
+    /* tr{
 display: block;
-    }
+    } */
     .userProfile-profile-content{
         flex-direction: column;
 
@@ -127,5 +157,39 @@ display: block;
     }
     .userProfile-profile{
         display: block;
+        margin-top: 5%;
+        width: 80%;
     }
+    .profile-outer-box{
+       flex-direction: column;
+       display: block;
+       margin: 0 auto;
+       justify-content: center;
+       align-items: center;
+    }
+    input{
+        text-align: center;
+    }
+    .profile-order-box{
+        width: 90%;
+        margin-top: 5%;
+        display: block;
+        margin: 0 auto;
+    }
+    th,td {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        text-align: center;
+        width: 33.33%;
+      }
+      thead th{
+        position: sticky;
+        top: 0;
+      }
+      .userProfile-input{
+        text-align: center;
+      }
+      .user-edit{
+        height: 3vh;
+      }
   }

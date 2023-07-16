@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 //Images
 import cart_icon from "./Images/Menu/icons8-cart-48.png"
+import user from "./Images/user.png"
 
 function Orderplaced({updateUser}) {
   const[isLoading , setIsLoading] =useState(true);  
@@ -48,6 +49,9 @@ fetch(`http://localhost:5000/api/order?email=${email}`).then((response)=>( respo
      <li ><a href="/menu">Menu</a></li>
      <li ><Link to="contact" spy={true} smooth={true} offset={-10} duration={500}>Contact</Link></li>
      <li><a href="/menu/cart" ><img className='menu-nav-cart-icon' src={cart_icon}/></a></li>
+     <li>
+              <a href="/profile"><img className='menu-nav-cart-icon' src={user}/></a>
+            </li>
      <li ><button className="Menu-Logout-button" onClick={Logout}>Logout</button></li>
     </ul>
     </div>

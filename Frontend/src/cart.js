@@ -96,7 +96,7 @@ const [name,setName]=useState("");
      <li ><Link to="contact" spy={true} smooth={true} offset={-10} duration={500}>Contact</Link></li>
      <li><a href="/menu/cart" ><img className='menu-nav-cart-icon' src={cart_icon}/></a></li>
      <li>
-              <a href="/profile"><img src={user}/></a>
+              <a href="/profile"><img className='menu-nav-cart-icon' src={user}/></a>
             </li>
      <li ><button className="Menu-Logout-button" onClick={Logout}>Logout</button></li>
     </ul>
@@ -128,7 +128,9 @@ else{
      <li ><a href="/menu">Menu</a></li>
      <li ><Link to="contact" spy={true} smooth={true} offset={-10} duration={500}>Contact</Link></li>
      <li><a href="/menu/cart" ><img className='menu-nav-cart-icon' src={cart_icon}/></a></li>
-
+     <li>
+              <a href="/profile"><img className='menu-nav-cart-icon' src={user}/></a>
+            </li>
      <li ><button className="Menu-Logout-button" onClick={Logout}>Logout</button></li>
     </ul>
   </div>
