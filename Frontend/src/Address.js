@@ -23,7 +23,7 @@ function Address(data) {
                 toast.warn("Please Fill all the data");
           }
          else {
-         const res=await fetch(`http://localhost:5000/api/address?email=${email}`,{
+         const res=await fetch(`https://restaurantbackend-a7kv.onrender.com/api/address?email=${email}`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",

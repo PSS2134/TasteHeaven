@@ -18,7 +18,7 @@ function SignIn({ updateUser, updateName }) {
     if (!userData.email || !userData.password) {
       toast.warning("Please Fill the Data");
     } else {
-      const res = await fetch("http://localhost:5000/api/login", {
+      const res = await fetch("https://restaurantbackend-a7kv.onrender.com/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

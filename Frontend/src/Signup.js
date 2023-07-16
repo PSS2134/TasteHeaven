@@ -24,7 +24,7 @@ function Signup() {
       toast.warning("Please Fill the Data");
     } else {
       try {
-        const res = await fetch("http://localhost:5000/api/signup", {
+        const res = await fetch("https://restaurantbackend-a7kv.onrender.com/api/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

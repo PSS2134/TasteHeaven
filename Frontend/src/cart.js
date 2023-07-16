@@ -36,7 +36,7 @@ const [name,setName]=useState("");
 
     useEffect(()=>{
         
-       fetch(`http://localhost:5000/api/add-to-cart/?name=${email}`).then((res)=> {
+       fetch(`https://restaurantbackend-a7kv.onrender.com/api/add-to-cart/?name=${email}`).then((res)=> {
        
        return res.json()
        

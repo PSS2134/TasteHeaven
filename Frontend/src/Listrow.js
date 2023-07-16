@@ -25,7 +25,7 @@ const { email} = JSON.parse(localStorage.getItem("Data"));
 
  
       try {
-        const res = await fetch(`http://localhost:5000/api/add-to-cart?email=${email}`, {
+        const res = await fetch(`https://restaurantbackend-a7kv.onrender.com/api/add-to-cart?email=${email}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({id,title,url,quantity,price}),
@@ -57,7 +57,7 @@ const { email} = JSON.parse(localStorage.getItem("Data"));
     
   };
   const decrease= async()=>{
-    const res= await fetch(`http://localhost:5000/api/remove-from-cart?email=${email}`,{
+    const res= await fetch(`https://restaurantbackend-a7kv.onrender.com/api/remove-from-cart?email=${email}`,{
       method: "PUT",
       headers: { "Content-Type": "application/json"},
       body: JSON.stringify({id:id})

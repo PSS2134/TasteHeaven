@@ -28,7 +28,7 @@ function Orderplaced({updateUser}) {
   
     }
 useEffect(()=>{
-fetch(`http://localhost:5000/api/order?email=${email}`).then((response)=>( response.json()))
+fetch(`https://restaurantbackend-a7kv.onrender.com/api/order?email=${email}`).then((response)=>( response.json()))
 .then((data)=>{
     console.log(data);
     setIsLoading(false);
