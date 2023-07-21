@@ -8,7 +8,7 @@ const Cart = require("./models/cartModel");
 const Address= require('./models/addressModel');
 const Order = require("./models/orderModel");
 
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "./.env" });
 const URI = process.env.DATABASE;
 const PORT=process.env.PORT||5000;
 const mongoose = require("mongoose");
