@@ -18,7 +18,8 @@ function Orderplaced({updateUser}) {
   const[isLoading , setIsLoading] =useState(true);  
  const [finalorder,setFinalOrder]=useState({});
  const email=JSON.parse(localStorage.getItem('Data')).email;
-
+ const order_id=JSON.parse(localStorage.getItem('order_id'));
+console.log(order_id);
     const Logout=()=>
     {
       localStorage.removeItem('Data')
@@ -28,8 +29,9 @@ function Orderplaced({updateUser}) {
   
     }
 useEffect(()=>{
-fetch(`https://restaurantbackend-a7kv.onrender.com/api/order?email=${email}`).then((response)=>( response.json()))
+fetch(`http://localhost:5000/api/order?email=${email}&order_id=${order_id}`).then((response)=>( response.json()))
 .then((data)=>{
+  console.log("hemlo")
     console.log(data);
     setIsLoading(false);
     setFinalOrder(data);

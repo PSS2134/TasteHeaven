@@ -44,6 +44,8 @@ const Confirmation=({updateUser})=>{
 // console.log(order.food);
 
 const placeOrder=async()=>{
+  localStorage.setItem('order_id',JSON.stringify(order_id));
+  console.log(order_id);
   const res=await fetch("https://restaurantbackend-a7kv.onrender.com/api/order",{
     method: 'POST',
     headers: {

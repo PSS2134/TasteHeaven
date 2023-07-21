@@ -235,7 +235,7 @@ return res.json({name:user.name,food:food.food,flatno:flatno,contact:contact,add
 });
 
 app.post('/api/order',async(req,res)=>{
-  console.log(req.body)
+ 
   const {email,order_id}=req.body;
   const response=await Cart.findOne({email:email});
   const foodArray=response.food;
@@ -243,11 +243,14 @@ app.post('/api/order',async(req,res)=>{
   const userAddress=await Address.findOne({email:email});
   const {flatno,contact,address,landmark}= userAddress;
 
-  console.log(flatno,contact,landmark,address)
+  // console.log(flatno,contact,landmark,address)
  // getting date and time of post/order placed
   var today = new Date();
-  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  var date = today.toLocaleDateString();
+
+  console.log(date);
+  const time=new Date().toLocaleTimeString(undefined,{timezone:"Asia/Kolkata"});
+  console.log(time);
  
   // console.log(email,order_id,foodArray,Total_Price,userAddress)
   const order=new Order({
@@ -262,18 +265,20 @@ return res.json('order placed success');
 
 
 app.get('/api/order', async(req, res) => {
-  const email=req.query.email;
- 
+const email = req.query.email;
+const order_id = req.query.order_id;
+console.log(order_id);
   const user= await User.findOne({email:email});
   const {name}=user;
-  // console.log(name)
+
   const userAddress=await Address.findOne({email:email});
   console.log(userAddress);
   const {flatno,address,contact,landmark}=userAddress;
-  // console.log(flatno,address,contact,landmark)
-  const order= await Order.findOne({email:email});
-  // console.log(order);
-  const{food,order_id,Total_Price,date,time}=order;
+  
+  const order= await Order.findOne({email:email,order_id:order_id});
+  console.log(order);
+ 
+  const{food,Total_Price,date,time}=order;
   console.log('sent');
   return res.json({name:name,flatno:flatno,address:address,landmark:landmark,food:food,order_id:order_id,Total_Price:Total_Price,contact:contact,date:date,time:time});
 
