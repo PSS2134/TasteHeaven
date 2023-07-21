@@ -125,7 +125,7 @@ const navigate = useNavigate();
 
    }
    const handleProfileSave=async()=>{
-    const res= await fetch(`http://localhost:5000/api/profile?email=${email}`,{
+    const res= await fetch(`https://restaurantbackendnew.onrender.com/api/profile?email=${email}`,{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
