@@ -57,7 +57,7 @@ const { email} = JSON.parse(localStorage.getItem("Data"));
     
   };
   const decrease= async()=>{
-    const res= await fetch(`https://restaurantbackendnew.onrender.com/api/remove-from-cart?email=${email}`,{
+    const res= await fetch(`http://localhost:5000/api/remove-from-cart?email=${email}`,{
       method: "PUT",
       headers: { "Content-Type": "application/json"},
       body: JSON.stringify({id:id})

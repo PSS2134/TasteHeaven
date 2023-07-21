@@ -163,6 +163,7 @@ app.get("/api/add-to-cart", async (req, res) => {
 });
 
 app.put('/api/remove-from-cart', async (req, res) => {
+  console.log("hemlo")
   const email=req.query.email;
   const {id}=req.body;
   const resnew = await Cart.findOne({ email:email });
@@ -173,11 +174,19 @@ app.put('/api/remove-from-cart', async (req, res) => {
       if(a>1)
       {
       singleFood.quantity=a-1;
+      // console.log(resnew.Total_Price);
+      // console.log(singleFood.price)
+      resnew.Total_Price=Number(resnew.Total_Price)-Number(singleFood.price);
+      // console.log(resnew.Total_Price);
       await resnew.save();
       console.log('food decreased by one');
       return res.json('Food quantity decreased');
     }
     else{
+      // console.log(resnew.Total_Price);
+      // console.log(singleFood.price)
+      resnew.Total_Price=Number(resnew.Total_Price)-Number(singleFood.price);
+      // console.log(resnew.Total_Price);
       const index=resnew.food.indexOf(singleFood);
       resnew.food.splice(index,1);
       await resnew.save();
