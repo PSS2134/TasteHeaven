@@ -15,7 +15,7 @@ function MenuCard(dish) {
 
   const Addtocart = async () => {
     const email=JSON.parse(localStorage.getItem('Data')).email;
-    const res = await fetch(`https://restaurantbackend-a7kv.onrender.com/api/add-to-cart?email=${email}`,{
+    const res = await fetch(`https://restaurantbackendnew.onrender.com/api/add-to-cart?email=${email}`,{
       method: 'POST',
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({...dish,email:email}),

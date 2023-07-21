@@ -36,7 +36,7 @@ const [name,setName]=useState("");
 
     useEffect(()=>{
         
-       fetch(`https://restaurantbackend-a7kv.onrender.com/api/add-to-cart/?name=${email}`).then((res)=> {
+       fetch(`https://restaurantbackendnew.onrender.com/api/add-to-cart/?name=${email}`).then((res)=> {
        
        return res.json()
        
@@ -102,8 +102,8 @@ const [name,setName]=useState("");
     </ul>
   </div>
     
-    <div  style={{"backgroundColor":"#f5f6f9","height":"110vh"}} className='header-flexbox'>
-        {<p className='cart-header'>Hey! {name},<br></br>Welcome to the Cart!, No Items yet</p>}
+    <div  style={{"backgroundColor":"#f5f6f9","height":"100vh"}} className='header-flexbox'>
+        {<p className='cart-header'>Hey! <span style={{"color":"blueviolet","fontWeight":"600"}}>{name}</span>,<br></br>Welcome to the Cart!,<br></br><span style={{"color":"red","fontWeight":"600"}}>No Items yet</span> </p>}
         
         <img style={{"backgroundColor":"#f5f6f9"}} className='cart-img' src={cart}/>
         </div></>}     
@@ -136,7 +136,7 @@ else{
   </div>
     
     <div className='header-flexbox'>
-      {name&& <p className='cart-header'>Hey! {name},<br></br> Welcome to the Cart!</p>}
+      {name&& <p className='cart-header'>Hey! <span style={{"color":"blueviolet","fontWeight":"600"}}>{name}</span>,<br></br> Welcome to the Cart!</p>}
         
         <img className='cart-img' src={cart}/>
         </div>

@@ -29,7 +29,7 @@ console.log(order_id);
   
     }
 useEffect(()=>{
-fetch(`http://localhost:5000/api/order?email=${email}&order_id=${order_id}`).then((response)=>( response.json()))
+fetch(`https://restaurantbackendnew.onrender.com/api/order?email=${email}&order_id=${order_id}`).then((response)=>( response.json()))
 .then((data)=>{
   console.log("hemlo")
     console.log(data);

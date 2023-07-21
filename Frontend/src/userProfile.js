@@ -35,7 +35,7 @@ const navigate = useNavigate();
 
   useEffect(() => {
     
-    fetch(`https://restaurantbackend-a7kv.onrender.com/api/profile?email=${email}`)
+    fetch(`https://restaurantbackendnew.onrender.com/api/profile?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -89,7 +89,7 @@ const navigate = useNavigate();
   };
 
   const handleImage = async (e) => {
-    const res = await fetch("https://restaurantbackend-a7kv.onrender.com/api/image", {
+    const res = await fetch("https://restaurantbackendnew.onrender.com/api/image", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, picture }),
@@ -125,7 +125,7 @@ const navigate = useNavigate();
 
    }
    const handleProfileSave=async()=>{
-    const res= await fetch(`https://restaurantbackend-a7kv.onrender.com/api/profile/?email=${email}`,{
+    const res= await fetch(`http://localhost:5000/api/profile?email=${email}`,{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
@@ -276,7 +276,7 @@ name="contactuser"
                 <tbody>
 
                   {order.orderArray &&
-                    order.orderArray.map((SingleOrder) => {
+                    order.orderArray.toReversed().map((SingleOrder) => {
                       return (
                         <tr>
                           <td>{SingleOrder.order_id}</td>

@@ -299,7 +299,16 @@ app.post("/api/profile",async(req,res)=>{
   const user=await User.findOne({email:email});
   user.name=req.body.name;
   user.contact=req.body.contact;
+
   await user.save();
+  const cart= await Cart.findOne({email:email});
+ 
+  if(cart)
+  {
+    cart.name=req.body.name;
+    await cart.save();
+  }
+  console.log(cart);
   return res.json("updated");
 })
 app.put("/api/image", async (req, res) => {

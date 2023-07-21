@@ -33,7 +33,7 @@ const Confirmation=({updateUser})=>{
     }
     const email=JSON.parse(localStorage.getItem('Data')).email;
     useEffect(()=>{
-      fetch(`https://restaurantbackend-a7kv.onrender.com/api/address/?email=${email}`).then((response)=>(response.json()))
+      fetch(`https://restaurantbackendnew.onrender.com/api/address/?email=${email}`).then((response)=>(response.json()))
       .then((data)=>{
         // console.log(data);
         setIsLoading(false);
@@ -46,7 +46,7 @@ const Confirmation=({updateUser})=>{
 const placeOrder=async()=>{
   localStorage.setItem('order_id',JSON.stringify(order_id));
   console.log(order_id);
-  const res=await fetch("https://restaurantbackend-a7kv.onrender.com/api/order",{
+  const res=await fetch("https://restaurantbackendnew.onrender.com/api/order",{
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
