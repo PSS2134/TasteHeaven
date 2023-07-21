@@ -121,6 +121,7 @@ table {
   .user-edit{
     height: 5vh;
     float: right;
+  color: #525fe1;
   }
   .user-edit:active{
     transform: scale(1.1);
@@ -188,6 +189,11 @@ display: block;
       }
       .userProfile-input{
         text-align: center;
+        overflow-y: hidden;
+      }
+      .userProfile-label{
+        text-align: center;
+        overflow-y: hidden;
       }
       .user-edit{
         height: 3vh;

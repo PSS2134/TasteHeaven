@@ -20,9 +20,9 @@
 }
 .cart-img{
     height: 60vh;
-    margin: 5%;
+    margin: 5% 0;
     margin-right: 15%;
-    width: 40%;
+    width: 30%;
     background-color: #f6f5f9; 
     
 }
@@ -32,6 +32,7 @@
     /* justify-content: center; */
     align-items: center;
     background-color: #f6f5f9; 
+    width:100%;
 }
 .list-header{
     display: flex;
@@ -135,6 +136,8 @@ padding: 1.5%;
     }
     .header-flexbox{
         flex-direction: column;
+        text-align: center;
+        width: 100%;
     }
     .cart-header {
       font-size: 1.5rem;
